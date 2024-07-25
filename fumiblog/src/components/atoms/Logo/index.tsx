@@ -22,7 +22,6 @@ const Logo: React.FC = () => {
             sizes="(min-width: 768px) 200px, 100vw"
           />
         </figure>
-        <span>FUMIBLOG</span>
       </ImageLink>
     </Link>
   );
