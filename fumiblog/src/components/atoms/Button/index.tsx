@@ -11,8 +11,8 @@ type ButtonProps = {
 
 const StyledButton = styled.button<ButtonProps>`
 
-    background-color: ${props => props.backgroundColor || '#008CBA'};
-    color: ${props => props.color || 'white'};
+    background-color: ${props => props.backgroundColor || 'white'};
+    color: ${props => props.color || 'black'};
     font-size: ${props => props.fontSize || '16px'};  // fontSize プロパティを適用
 
     ${props => {
@@ -26,7 +26,7 @@ const StyledButton = styled.button<ButtonProps>`
         default:
             // Default style for "button"
             return css`
-                padding: 10px 20px;
+                padding: 10px 10px;
                 border: none;
                 border-radius: 4px;
                 cursor: pointer;
