@@ -46,16 +46,16 @@ const Button: React.FC<ButtonProps> = ({
     backgroundColor,
     color,
     fontSize
-  }) => (
+}) => (
     <StyledButton
-      onClick={onClick}
-      type={type}
-      backgroundColor={backgroundColor}
-      color={color}
-      fontSize={fontSize}
+        onClick={onClick}
+        type={type}
+        backgroundColor={backgroundColor}
+        color={color}
+        fontSize={fontSize}
     >
-      {children}
+        {children}
     </StyledButton>
-  );
+);
   
-  export default Button;
+export default Button;
