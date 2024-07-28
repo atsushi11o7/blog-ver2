@@ -4,16 +4,17 @@ import styled from "styled-components";
 
 const ImageLink = styled.a`
     display: inline-block;
-    font-size: var(--small-heading2);
-    font-weight: 700;
-    letter-spacing: 0.15em;
+    line-height: 0;
+    margin: 0px;
+    padding: 0;
+    vertical-align: bottom;
 `;
 
 const Logo: React.FC = () => {
     return (
-        <Link href="/">
+        <Link href="/" passHref>
             <ImageLink>
-                <figure>
+                <figure style={{ margin: 0}}>
                     <Image
                         src="/logo.png"
                         width={200}
