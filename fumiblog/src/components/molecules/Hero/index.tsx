@@ -15,27 +15,37 @@ const fadeIn = keyframes`
     }
 `;
 
-// StyledHeroにアニメーションを適用
+// StyledHero全体を包むコンテナを定義
+const HeroContainer = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: center;
+`;
+
+// StyledHeroにアニメーションと最大幅を適用
 const StyledHero = styled.div`
     width: 100%;
+    max-width: 960px; /* 最大幅を1200pxに制限 */
     height: auto;
     position: relative;
     aspect-ratio: 1400 / 400;
     overflow: hidden;
     opacity: 0;
     transform: scale(0.9);
-    animation: ${fadeIn} 1.5s ease-in-out forwards; /* アニメーションを適用 */
+    animation: ${fadeIn} 1.5s ease-in-out forwards;
 `;
 
 const Hero: React.FC = () => (
-    <StyledHero>
-        <Image
-            src="/hero.png"
-            alt="hero"
-            fill
-            style={{ objectFit: 'cover' }}
-        />
-    </StyledHero>
+    <HeroContainer>
+        <StyledHero>
+            <Image
+                src="/hero.png"
+                alt="hero"
+                fill
+                style={{ objectFit: 'cover' }}
+            />
+        </StyledHero>
+    </HeroContainer>
 );
 
 export default Hero;

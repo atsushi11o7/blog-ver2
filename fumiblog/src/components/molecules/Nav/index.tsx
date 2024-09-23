@@ -2,7 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 
 const NavContainer = styled.nav`
-    /* Add any styles for the nav container if needed */
+    padding: 0 2em 0 0;
 `;
 
 const List = styled.ul`
