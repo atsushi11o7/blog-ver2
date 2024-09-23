@@ -14,9 +14,9 @@ const ListItem = styled.li`
     list-style: none;
 `;
 
-const StyledLink = styled.a`
+const StyledLink = styled(Link)`
     text-decoration: none;
-    color: inherit;
+    color: black;
 
     &:hover {
         color: blue;
@@ -28,19 +28,13 @@ const Nav: React.FC = () => {
         <NavContainer>
             <List>
                 <ListItem>
-                    <Link href="/" passHref>
-                        <StyledLink>Home</StyledLink>
-                    </Link>
+                    <StyledLink href="/">Home</StyledLink>
                 </ListItem>
                 <ListItem>
-                    <Link href="/about" passHref>
-                        <StyledLink>About</StyledLink>
-                    </Link>
+                    <StyledLink href="/about">About</StyledLink>
                 </ListItem>
                 <ListItem>
-                    <Link href="/blog" passHref>
-                        <StyledLink>Blog</StyledLink>
-                    </Link>
+                    <StyledLink href="/blog">Blog</StyledLink>
                 </ListItem>
             </List>
         </NavContainer>

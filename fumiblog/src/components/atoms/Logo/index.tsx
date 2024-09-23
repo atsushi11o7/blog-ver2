@@ -17,8 +17,8 @@ const Logo: React.FC = () => {
                 <figure style={{ margin: 0}}>
                     <Image
                         src="/logo.png"
-                        width={200}
-                        height={120}
+                        width={120}
+                        height={72}
                         alt="logo"
                         sizes="(min-width: 768px) 200px, 100vw"
                     />
