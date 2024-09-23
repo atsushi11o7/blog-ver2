@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import SocialIconSet from './index'
 
 export default {
-    title: 'Atoms/SocialIconSet',
+    title: 'Molecules/SocialIconSet',
     component: SocialIconSet,
 } as Meta;
   

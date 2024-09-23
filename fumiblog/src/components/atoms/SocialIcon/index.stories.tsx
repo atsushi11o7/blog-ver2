@@ -24,3 +24,11 @@ export const github: StoryObj<typeof SocialIcon> = {
         color: "#707070",
     }
 };
+
+export const repository: StoryObj<typeof SocialIcon> = {
+    args: {
+        size: 24,
+        type: "repository",
+        color: "#eeeeee",
+    }
+};

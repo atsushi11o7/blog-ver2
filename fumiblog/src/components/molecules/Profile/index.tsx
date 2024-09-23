@@ -10,11 +10,12 @@ const ProfileContainer = styled.div`
 const Name = styled.h3`
     font-size: 1.5rem;
     margin: 10px 0;
+    color: #444444;
 `;
 
 const Description = styled.p`
     font-size: 1rem;
-    color: #666;
+    color: #707070;
 `;
 
 const HorizontalLine = styled.hr`

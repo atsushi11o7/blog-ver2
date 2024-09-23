@@ -5,6 +5,7 @@ const SectionTitle = styled.h3`
     font-size: 1.2rem;
     margin: 20px 0 10px;
     font-weight: bold;
+    color: #444444;
 `;
 
 const CategoryListContainer = styled.ul`

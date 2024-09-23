@@ -3,7 +3,7 @@ import { FaXTwitter, FaInstagram, FaGithub } from 'react-icons/fa6';
 
 type SocialIconProps = {
     size?: number;
-    type?: "x" | "github";
+    type?: "x" | "github" | "repository";
     color?: string;
 };
 
@@ -26,6 +26,8 @@ const SocialIcon: React.FC<SocialIconProps> = ({ size = 24, type = "x", color = 
                 return <FaXTwitter size={size} />;
             case "github":
                 return <FaGithub size={size} />;
+            case "repository":
+                return <FaGithub size={size} />;
             default:
                 return null;
         }
@@ -37,6 +39,8 @@ const SocialIcon: React.FC<SocialIconProps> = ({ size = 24, type = "x", color = 
                 return "https://x.com/atsushi11o7";
             case "github":
                 return "https://github.com/atsushi11o7";
+            case "repository":
+                return "https://github.com/atsushi11o7/blog-ver2"
             default:
                 return "#";
         }
