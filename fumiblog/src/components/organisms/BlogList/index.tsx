@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -9,105 +9,113 @@ import { Blog } from '@/libs/microcms';
 
 const PageWrapper = styled.div`
     display: flex;
-    justify-content: center; /* 中央揃え */
-    gap: 30px; /* サイドバーとメインコンテンツの間隔を固定 */
-    max-width: 1200px; /* 最大幅を指定 */
-    margin: 0 auto; /* 中央揃え */
+    justify-content: center;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
     
-    /* 1199px以下ではサイドバーをメインコンテンツの下に配置 */
     @media (max-width: 1199px) {
-        flex-direction: column; /* サイドバーを下に */
-        align-items: center; /* 中央に揃える */
+        flex-direction: column;
+        align-items: center;
     }
 `;
 
-// メインコンテンツエリア
 const BlogListContainer = styled.div`
     display: grid;
-    grid-gap: 30px; /* カード間の隙間を一定に */
+    grid-gap: 30px;
     max-width: 100%;
 
-    /* 1200px以上の画面では2列 */
     @media (min-width: 1200px) {
-        grid-template-columns: repeat(2, 1fr); /* カード2列 */
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    /* 1199px以下ではカードが2列 */
     @media (max-width: 1199px) {
-        grid-template-columns: repeat(2, 1fr); /* カード2列 */
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    /* 767px以下ではカードが1列 */
     @media (max-width: 767px) {
-        grid-template-columns: 1fr; /* カード1列 */
+        grid-template-columns: 1fr;
     }
 `;
 
-// サイドバーのスタイル
 const SidebarWrapper = styled.div`
-    width: 300px; /* デフォルトのサイドバーの幅 */
+    width: 300px;
 
-    /* 1199px以下ではサイドバーの幅を90%に */
     @media (max-width: 1199px) {
-        width: 90%; /* 画面幅の90% */
-        margin: 0 auto; /* 中央に配置 */
+        width: 90%;
+        margin: 0 auto;
     }
 `;
-
-type BlogListProps = {
-    displayCount?: number; // 表示する記事数を指定する引数
-};
 
 const Spacer = styled.div`
     margin-bottom: 60px;
 `;
 
+// スケルトン用のスタイル
+const SkeletonCard = styled.div`
+    width: 100%;
+    height: 200px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+`;
+
+const SkeletonSidebar = styled.div`
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+
+    @media (max-width: 1199px) {
+        width: 90%;
+        margin: 0 auto;
+    }
+`;
+
+type BlogListProps = {
+    displayCount?: number;
+};
+
 const BlogList: React.FC<BlogListProps> = ({ displayCount = 12 }) => {
-    const [blogs, setBlogs] = useState<Blog[]>([]); // ブログデータの状態管理
-    const [isLoading, setIsLoading] = useState(true); // ローディング状態の管理
+    const [blogs, setBlogs] = useState<Blog[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const response = await getBlogs(); // ブログデータを取得
-                setBlogs(response.contents); // 取得したブログデータをセット
-                setIsLoading(false); // ローディングを終了
+                const response = await getBlogs();
+                setBlogs(response.contents);
+                setIsLoading(false);
             } catch (error) {
                 console.error("Error fetching blogs:", error);
-                setIsLoading(false); // エラー時もローディングを終了
+                setIsLoading(false);
             }
         };
-        fetchBlogs(); // データ取得を実行
+        fetchBlogs();
     }, []);
 
-    if (isLoading) {
-        return <div>Loading...</div>; // ローディング中の表示
-    }
-
-    // 最新の記事から指定された数だけ表示する
     const displayedBlogs = blogs.slice(0, displayCount);
 
     return (
         <>
             <Spacer />
             <PageWrapper>
-                {/* メインコンテンツ部分 */}
                 <BlogListContainer>
-                    {displayedBlogs.map((blog) => (
-                        <PostCard
-                            key={blog.id}
-                            title={blog.title}
-                            imageUrl={blog.eyecatch?.url}
-                            category={blog.category.name}
-                            date={blog.publishDate}
-                            link={`/blogs/${blog.slug}`}
-                        />
-                    ))}
+                    {isLoading
+                        ? Array.from({ length: displayCount }).map((_, index) => (
+                              <SkeletonCard key={index} />
+                          ))
+                        : displayedBlogs.map((blog) => (
+                              <PostCard
+                                  key={blog.id}
+                                  title={blog.title}
+                                  imageUrl={blog.eyecatch?.url}
+                                  category={blog.category.name}
+                                  date={blog.publishDate}
+                                  link={`/blogs/${blog.slug}`}
+                              />
+                          ))}
                 </BlogListContainer>
-
-                {/* サイドバー部分 */}
                 <SidebarWrapper>
-                    <Sidebar />
+                    {isLoading ? <SkeletonSidebar /> : <Sidebar />}
                 </SidebarWrapper>
             </PageWrapper>
             <Spacer />
