@@ -2,21 +2,18 @@ import { createClient } from "microcms-js-sdk";
 import type { MicroCMSQueries } from "microcms-js-sdk";
 
 
-// タグの型定義
 export type Tag = {
     id: string;
     name: string;
     slug: string;
 }
 
-// カテゴリ型の定義
 export type Category = {
     id: string;
     name: string;
     slug: string;
 }
 
-// ブログの型定義
 export type Blog = {
     id: string;
     title: string;
