@@ -118,7 +118,7 @@ const BlogList: React.FC<BlogListProps> = ({ displayCount = 12 }) => {
             setShowContent(true);
         }, 1000);
 
-        return () => clearTimeout(timer); // コンポーネントのアンマウント時にタイマーをクリア
+        return () => clearTimeout(timer);
     }, []);
 
     const displayedBlogs = blogs.slice(0, displayCount);
@@ -139,7 +139,7 @@ const BlogList: React.FC<BlogListProps> = ({ displayCount = 12 }) => {
                                   imageUrl={blog.eyecatch?.url}
                                   category={blog.category.name}
                                   date={blog.publishDate}
-                                  link={`/blogs/${blog.slug}`}
+                                  link={`/blog/${blog.id}`}
                               />
                           ))}
                 </BlogListContainer>

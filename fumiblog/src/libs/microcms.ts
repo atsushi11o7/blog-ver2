@@ -43,9 +43,24 @@ export const client = createClient({
     apiKey: process.env.NEXT_PUBLIC_MICROCMS_API_KEY,
 })
 
+// 記事一覧を取得
 export const getBlogs = async () => {
     const blogs = await client.getList<Blog>({
-        endpoint: "blogs"
+        endpoint: 'blogs',
     });
     return blogs;
-}
+};
+
+// 特定の記事をスラッグで取得
+export const getBlogBySlug = async (slug: string) => {
+    try {
+        const blog = await client.getListDetail<Blog>({
+            endpoint: 'blogs',
+            contentId: slug,
+        });
+        return blog;
+    } catch (error) {
+        console.error(`Error fetching blog with slug ${slug}:`, error);
+        return null;
+    }
+};
